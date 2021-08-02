@@ -14,9 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.1
     - uses: cachix/install-nix-action@v12
-    - uses: cachix/cachix-action@v8
+    - uses: cachix/cachix-action@v10
       with:
-        name: gccemacs-darwin
-        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+        name: siraben
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix-build -A emacsGccDarwin
     - run: echo OK
