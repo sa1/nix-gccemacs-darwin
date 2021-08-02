@@ -5,10 +5,10 @@
         "homepage": "http://www.gnu.org/software/emacs/",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "e775ef2f57e7889e29edbf44e6f6a2deb79d2635",
-        "sha256": "1lsm2l19yw2di7bhra7yas4q5d92aqnfbr3ndf4iwpgbvcmjvj29",
+        "rev": "a812992aee8d75969ebf9d2fb93aca21aed4a755",
+        "sha256": "0lymwhvmgabhknmp4kra1kq1ynga7lip1r6ag9nfj2h04k0xcssi",
         "type": "tarball",
-        "url": "https://github.com/emacs-mirror/emacs/archive/e775ef2f57e7889e29edbf44e6f6a2deb79d2635.tar.gz",
+        "url": "https://github.com/emacs-mirror/emacs/archive/a812992aee8d75969ebf9d2fb93aca21aed4a755.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-overlay": {
@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "2ff3bbb43a068dd2322b55dbb585c240c5062558",
-        "sha256": "12zrwn55nq179s5nn6f7q1wydywvpllabj8jmw7byy2jx2h0i2mk",
+        "rev": "66908c4319edbcee3fd13de98fcd98dfb695e279",
+        "sha256": "0am1ymga53ndyfwn4cylc6w9pa68s0m4hgf082y1442b9zssib40",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/2ff3bbb43a068dd2322b55dbb585c240c5062558.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/66908c4319edbcee3fd13de98fcd98dfb695e279.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -29,10 +29,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "527494090f7075ed5e3aa15ef7093846e5e25d52",
-        "sha256": "1hahf0i0iix1iyzaaq5a7rbgyfm3xjcfl69lm1b5mas1p8vdimih",
+        "rev": "e0ca65c81a2d7a4d82a189f1e23a48d59ad42070",
+        "sha256": "1pq9nh1d8nn3xvbdny8fafzw87mj7gsmp6pxkdl65w2g18rmcmzx",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/527494090f7075ed5e3aa15ef7093846e5e25d52.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/e0ca65c81a2d7a4d82a189f1e23a48d59ad42070.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -41,10 +41,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2c8871a7dbc9db0753fdea004ef264ed249d9791",
-        "sha256": "18x2ry8sf59awd5a4xv0f4nns9x8s309nz3aqdbdfrd4ay1j6wjz",
+        "rev": "59dc40859875c4462e3f3e717bf8a041e6ec4e4e",
+        "sha256": "0kspn5r2a7gp3w12yrnxb1373vjh46nzip0w1qgikiwhr6k3zmhj",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/2c8871a7dbc9db0753fdea004ef264ed249d9791.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/59dc40859875c4462e3f3e717bf8a041e6ec4e4e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-unstable": {
@@ -53,10 +53,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "51bb9f3e9ab6161a3bf7746e20b955712cef618b",
-        "sha256": "1bqla14c80ani27c7901rnl37kiiqrvyixs6ifvm48p5y6xbv1p7",
+        "rev": "ab5b6828af26215bf2646c31961da5d3749591ef",
+        "sha256": "13mcwbjh8j3mvmgv2z2kdbgpw0qy42jnanbxymj21n3hss0h7qrz",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/51bb9f3e9ab6161a3bf7746e20b955712cef618b.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/ab5b6828af26215bf2646c31961da5d3749591ef.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
