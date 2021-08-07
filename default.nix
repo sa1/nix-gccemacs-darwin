@@ -1,10 +1,9 @@
-let
-  sources = import ./nix/sources.nix;
-  nixpkgs = sources."nixpkgs-unstable";
-  emacs-overlay = import ./emacs.nix;
-  pkgs = import nixpkgs { config = {}; overlays = [ emacs-overlay ]; };
-in
-{
-  emacsGccDarwin = pkgs.emacsGccDarwin;
-  emacsGccDarwinWrapped = pkgs.emacsGccDarwinWrapped;
-}
+(import (
+  let
+    lock = builtins.fromJSON (builtins.readFile ./flake.lock);
+  in fetchTarball {
+    url = "https://github.com/edolstra/flake-compat/archive/${lock.nodes.flake-compat.locked.rev}.tar.gz";
+    sha256 = lock.nodes.flake-compat.locked.narHash; }
+) {
+  src =  ./.;
+}).defaultNix

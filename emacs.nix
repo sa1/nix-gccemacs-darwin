@@ -1,15 +1,16 @@
+emacs-nativecomp: final: prev:
 let
-  sources = import ./nix/sources.nix;
-  nixpkgs = sources."nixpkgs-unstable";
-  pkgs = import nixpkgs {};
-  emacs-nativecomp = sources."emacs-nativecomp";
-  libPath = with pkgs; lib.concatStringsSep ":" [
+  # sources = import ./nix/sources.nix;
+  # nixpkgs = sources."nixpkgs-unstable";
+  # # pkgs = import nixpkgs {};
+  # emacs-nativecomp = sources."emacs-nativecomp";
+  libPath = with prev; lib.concatStringsSep ":" [
     "${lib.getLib libgccjit}/lib/gcc/${stdenv.targetPlatform.config}/${libgccjit.version}"
     "${lib.getLib stdenv.cc.cc}/lib"
     "${lib.getLib stdenv.glibc}/lib"
   ];
   emacsGccDarwin = builtins.foldl' (drv: fn: fn drv)
-    pkgs.emacs
+    prev.emacs
     [
 
       (drv: drv.override { srcRepo = true; })
@@ -19,16 +20,14 @@ let
           old: {
             name = "emacsGccDarwin";
             version = "28.0.50";
-            src = pkgs.fetchFromGitHub {
-              inherit (emacs-nativecomp) owner repo rev sha256;
-            };
+            src = emacs-nativecomp;
 
             configureFlags = old.configureFlags
             ++ [ "--with-ns" "--with-native-compilation" ];
 
             patches = [
               (
-                pkgs.fetchpatch {
+                prev.fetchpatch {
                   name = "tramp-detect-wrapped-gvfsd.patch";
                   url = "https://raw.githubusercontent.com/nix-community/emacs-overlay/master/patches/tramp-detect-wrapped-gvfsd.patch";
                   sha256 = "1rvz725697md3ir618kkrccsxzd6n0p8yddq7rsh5jg8dbrvjvcx";
@@ -65,21 +64,18 @@ let
       )
     ];
 in
-_: _:
   {
-    ci = (import ./nix {}).ci;
-
     inherit emacsGccDarwin;
 
-    emacsGccDarwinWrapped = pkgs.symlinkJoin {
+    emacsGccDarwinWrapped = prev.symlinkJoin {
       name = "emacsGccDarwinWrapped";
       paths = [ emacsGccDarwin ];
-      buildInputs = [ pkgs.makeWrapper ];
+      buildInputs = [ prev.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/emacs \
         --set LIBRARY_PATH ${libPath}
       '';
-      meta.platforms = pkgs.stdenv.lib.platforms.linux;
+      meta.platforms = prev.stdenv.lib.platforms.linux;
       passthru.nativeComp = true;
       src = emacsGccDarwin.src;
     };
