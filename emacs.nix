@@ -1,14 +1,5 @@
 emacs-nativecomp: final: prev:
 let
-  # sources = import ./nix/sources.nix;
-  # nixpkgs = sources."nixpkgs-unstable";
-  # # pkgs = import nixpkgs {};
-  # emacs-nativecomp = sources."emacs-nativecomp";
-  libPath = with prev; lib.concatStringsSep ":" [
-    "${lib.getLib libgccjit}/lib/gcc/${stdenv.targetPlatform.config}/${libgccjit.version}"
-    "${lib.getLib stdenv.cc.cc}/lib"
-    "${lib.getLib stdenv.glibc}/lib"
-  ];
   emacsGccDarwin = builtins.foldl' (drv: fn: fn drv)
     prev.emacs
     [
@@ -21,9 +12,6 @@ let
             name = "emacsGccDarwin";
             version = "28.0.50";
             src = emacs-nativecomp;
-
-            configureFlags = old.configureFlags
-            ++ [ "--with-ns" "--with-native-compilation" ];
 
             patches = [
               (
@@ -41,18 +29,8 @@ let
               --replace '(emacs-repository-get-branch)' '"master"'
             '';
 
-            postInstall = old.postInstall or "" + ''
-              ln -snf $out/lib/emacs/28.0.50/native-lisp $out/native-lisp
-              ln -snf $out/lib/emacs/28.0.50/native-lisp $out/Applications/Emacs.app/Contents/native-lisp
-
-              cat <<EOF> $out/bin/run-emacs.sh
-              #!/usr/bin/env bash
-              set -e
-              exec $out/bin/emacs-28.0.50 "\$@"
-              EOF
-
-              chmod a+x $out/bin/run-emacs.sh
-              ln -snf ./run-emacs.sh $out/bin/emacs
+            postInstall = old.postInstall + ''
+                ln -snf $out/lib/emacs/28.0.50/native-lisp $out/Applications/Emacs.app/Contents/native-lisp
             '';
           }
         )
@@ -64,19 +42,6 @@ let
       )
     ];
 in
-  {
-    inherit emacsGccDarwin;
-
-    emacsGccDarwinWrapped = prev.symlinkJoin {
-      name = "emacsGccDarwinWrapped";
-      paths = [ emacsGccDarwin ];
-      buildInputs = [ prev.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/emacs \
-        --set LIBRARY_PATH ${libPath}
-      '';
-      meta.platforms = prev.stdenv.lib.platforms.linux;
-      passthru.nativeComp = true;
-      src = emacsGccDarwin.src;
-    };
-  }
+{
+  inherit emacsGccDarwin;
+}
