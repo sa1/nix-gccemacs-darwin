@@ -4,10 +4,10 @@
       "flake": false,
       "locked": {
         "lastModified": 1632555027,
-        "narHash": "sha256-Ko5EqBgInWtRiIWjFk1wsI0y907A46mDLRGcyXbaipg=",
+        "narHash": "sha256-IzT7t3IAuxY1rYZrAyRD/991ghim4VNXtLV6VGhlUPs=",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "6d37c9bb50f7d88ea0740915795bbc7936f1ec19",
+        "rev": "5c73dfcbcb12d107dfdad335328b7c258bdd64c8",
         "type": "github"
       },
       "original": {
