@@ -1,6 +1,6 @@
 emacs-nativecomp: final: prev:
 let
-  emacsGccDarwin = builtins.foldl' (drv: fn: fn drv)
+  emacsGccDarwin' = builtins.foldl' (drv: fn: fn drv)
     prev.emacs
     [
 
@@ -12,6 +12,9 @@ let
             name = "emacsGccDarwin";
             version = "28.0.50";
             src = emacs-nativecomp;
+
+            configureFlags = old.configureFlags
+              ++ [ "--with-cairo" "--with-harfbuzz" ];
 
             patches = [
               (
@@ -41,6 +44,10 @@ let
         }
       )
     ];
+  emacsPackages = prev.emacsPackagesFor emacsGccDarwin';
+  emacsWithPackages = emacsPackages.emacsWithPackages;
+  emacsGccDarwin = emacsWithPackages (e: [ e.pdf-tools e.vterm ]);
+
 in
 {
   inherit emacsGccDarwin;
