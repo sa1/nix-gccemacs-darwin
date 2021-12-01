@@ -16,15 +16,7 @@ let
             configureFlags = old.configureFlags
               ++ [ "--with-cairo" "--with-harfbuzz" ];
 
-            patches = [
-              (
-                prev.fetchpatch {
-                  name = "tramp-detect-wrapped-gvfsd.patch";
-                  url = "https://raw.githubusercontent.com/nix-community/emacs-overlay/master/patches/tramp-detect-wrapped-gvfsd.patch";
-                  sha256 = "1rvz725697md3ir618kkrccsxzd6n0p8yddq7rsh5jg8dbrvjvcx";
-                }
-              )
-            ];
+            patches = [];
 
             postPatch = old.postPatch + ''
               substituteInPlace lisp/loadup.el \
