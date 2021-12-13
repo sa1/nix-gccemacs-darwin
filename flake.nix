@@ -21,5 +21,6 @@
       in {
         inherit overlay pkgs;
         packages = pkgs;
+        defaultPackage = pkgs.emacsGccDarwin;
       });
 }
